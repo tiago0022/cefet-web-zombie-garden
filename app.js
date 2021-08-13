@@ -23,12 +23,12 @@ import zombies from './routes/zombies.js'
 
 
 const app = express()
-const __dirname = new URL('.', import.meta.url).pathname
+// const __dirname = new URL('.', import.meta.url).pathname
 
 // configura a pasta que contém as views e o handlebars como templating engine
-app.set('views', `${__dirname}/views`)
+app.set('views', './views/')
 app.set('view engine', 'hbs')
-hbs.registerPartials(`${__dirname}/views/partials`, console.error)
+hbs.registerPartials('./views/partials', console.error)
 app.set('json spaces', 2);
 
 // possibilita enviar um DELETE via formulário,
@@ -45,7 +45,7 @@ app.use(session({                                         // necessário para fl
   saveUninitialized: true
 }))
 app.use(flash())                                          // necessário para msgs efêmeras
-app.use(express.static(path.join(__dirname, 'public')))   // serve arquivos estáticos
+app.use(express.static(path.join('.', 'public')))   // serve arquivos estáticos
 
 
 // configura as rotas "de cada entidade" da aplicação (separadinho, organizado)
